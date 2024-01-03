@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<h1>
+		<ui:insert name="title">...</ui:insert>
+	</h1>
+
+	<h:outputText
+		value="Zalogowany: #{remoteClient.roles}" />
+	<h:form>
+	<br></br>
+		<p:commandButton styleClass="rounded-button ui-button-help" value="Wyloguj" action="#{loginBB.doLogout()}"/>
+	</h:form>
+
+
+</ui:composition>

@@ -19,7 +19,7 @@ import com.jsf.entities.Movie;
 @Named
 @RequestScoped
 public class MovieListBB {
-	private static final String PAGE_MOVIE_EDIT = "movieEdit?faces-redirect=true";
+	private static final String PAGE_MOVIE_EDIT = "/pages/edit/movieEdit?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String title;

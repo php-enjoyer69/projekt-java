@@ -1,0 +1,57 @@
+body{
+	font-family: 'Century Gothic',helvetica,verdana,arial;
+	background: url("../img/bg2.jpg.xhtml?ln=template") no-repeat center center fixed;
+	background-size: cover;
+	margin:0;
+}
+
+.bottom-space{
+	margin-bottom: 2em;
+}
+
+.top-space{
+	margin-top: 1em;
+}
+
+.box{
+	padding: 1em;
+	border-radius: 3px;
+	background-color: #fff;
+}
+
+#page_wrapper{
+	margin: 1em;
+	min-width: 700px;
+}
+
+#footer{
+	text-align: center;
+}
+
+.ui-button {
+	background-color: rgb(255, 128, 192)!important;
+	color: rgb(255, 255, 255)!important;
+	border-color: #800080;
+}
+
+.ui-rounded-button {
+	background-color: rgb(255, 128, 192)!important;
+	color: rgb(255, 255, 255)!important;
+}
+
+.movie-view .movie-view-content {
+        border: 1px solid var(--surface-d);
+        border-radius: 3px;
+        margin: .3rem;
+        text-align: center;
+        padding: 2rem 0;
+}
+    
+.movie-view .movie-cover {
+        width: 50%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+}
+
+input.right {
+	float: right;
+}

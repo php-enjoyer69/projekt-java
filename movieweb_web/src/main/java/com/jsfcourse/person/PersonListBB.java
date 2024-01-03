@@ -19,7 +19,7 @@ import com.jsf.entities.Person;
 @Named
 @RequestScoped
 public class PersonListBB {
-	private static final String PAGE_PERSON_EDIT = "personEdit?faces-redirect=true";
+	private static final String PAGE_PERSON_EDIT = "/pages/edit/personEdit?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String surname;

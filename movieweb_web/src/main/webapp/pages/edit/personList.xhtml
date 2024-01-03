@@ -6,10 +6,14 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:head>
-	<meta charset="utf-8" />
-	<title>movieweb</title>
-</h:head>
+<ui:composition template="/templates/main-template.xhtml">
+
+	<ui:define name="title">
+		edycja aktorów
+	</ui:define>
+
+	<ui:define name="content">
+	
 <h:body style="background-color: #eee; margin: 0.5em;">
 
 	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true"
@@ -30,7 +34,8 @@
 		<p:commandButton value="Dodaj nową osobę"
 			action="#{personListBB.newPerson()}" style="margin-bottom:1em;" />
 			
-			<p:button value="Przejdz do listy filmów" outcome="movieList" />
+			<p:button value="Edycja filmów" outcome="movieList" />
+			<p:button value="STRONA GŁÓWNA" outcome="/public/mainPage" />
 			
 		<p:dataTable value="#{personListBB.list}" var="p">
 
@@ -84,4 +89,7 @@
 	</h:form>
 
 </h:body>
+	</ui:define>
+
+</ui:composition>
 </html>
