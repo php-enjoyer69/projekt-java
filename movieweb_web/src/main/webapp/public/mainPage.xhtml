@@ -10,14 +10,16 @@
 
 	<ui:define name="title">
 	</ui:define>
-
-    <h:form>
-	<p:commandButton styleClass="rounded-button ui-button-help" value="logowanie" action="#{loginBB.doLogout()}"/>
-	<p:commandButton styleClass="rounded-button ui-button-help" value="+ nowy film" outcome="/pages/edit/movieList" />
-	</h:form>
 	
 	
 		<ui:define name="content">
+		
+		    <h:form>
+			<p:button value="Filmy" outcome="/public/moviePage.xhtml"/>
+			<p:button value="Aktorzy" outcome="/public/personPage.xhtml"/>
+			<p:commandButton value="Wyloguj" action="#{loginBB.doLogout()}" icon="pi pi-fw pi-power-off"/>
+			</h:form>
+			
 			<p:panel header="Szukaj filmy" toggleable="true" collapsed="true"
 		style="margin-bottom: 4em;">
 		<h:form>

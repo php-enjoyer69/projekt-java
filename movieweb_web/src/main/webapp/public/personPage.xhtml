@@ -5,16 +5,119 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-<ui:composition template="/templates/login-template.xhtml">
-
-	<ui:define name="content">
-
-	<h1>FilmOwO - baza filmów i aktorów online</h1>
-	<p>Najlepsza baza z filmami jaką znajdziesz ♥</p>
 	
-	<p:button value="+ nowy aktor" outcome="/pages/edit/personList" />
-	<p:button value="+ nowy film" outcome="/pages/edit/movieList" />
+		<style>
+			img {
+    		object-fit: cover;
+		}</style>
+		
+<ui:composition template="/templates/view-template.xhtml">
+
+	<ui:define name="title">
+	</ui:define>
+	
+	<ui:define name="content">
+	
+		    <h:form>
+			<p:button value="Filmy" outcome="/public/moviePage.xhtml"/>
+			<p:button value="Aktorzy" outcome="/public/personPage.xhtml"/>
+			<p:commandButton value="Wyloguj" action="#{loginBB.doLogout()}" icon="pi pi-fw pi-power-off"/>
+			</h:form>
+			
+	<p:panel header="Szukaj osoby" toggleable="true" collapsed="true"
+		style="margin-bottom: 4em;">
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel value="nazwisko:" />
+				<p:inputText value="#{personListBB.surname}" />
+				<p:commandButton value="Szukaj" update="form-table" />
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+		<h:form id="form-table" style="margin-bottom:2em;">
+			<h2 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Popularni teraz:</h2>
+					<div class="card">
+        <p:carousel value="#{personListBB.list}" var="p" numVisible="3" numScroll="3" circular="true" autoplayInterval="5000">
+            <div class="movie-view">
+                <div class="movie-view-content">
+                    <div>
+                	<p:graphicImage name="/images/#{p.portrait}" width="300" height="420"/>
+                    </div>
+                    <div>
+                        <h3 class="mb-3"><h:outputText value="#{p.name} #{p.surname}"></h:outputText></h3>
+                        <h6 class="mt-0 mb-3">ur.
+                        <h:outputText value="#{p.birthyear}"><f:convertDateTime pattern="yyyy" /><!--<f:convertNumber maxFractionDigits = "4"></f:convertNumber>-->
+                        </h:outputText><br></br>
+                  <!--  <h5 class="mt-0 mb-3"><h:outputText value="#{m.description}"></h:outputText></h5> -->
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </p:carousel>
+    </div>
+    	</h:form>
+    	
+    <!--  	<div class="card" style="margin-left: 430px">
+    <p:galleria value="#{movieListBB.list}" var="m" numVisible="5"
+                showCaption="true" style="max-width: 640px; height: 100%;" >
+        <p:graphicImage name="/images/#{m.cover}" style="width: 100%; display: block;" />
+        <f:facet name="caption">
+            <h4 class="mb-2">#{m.title}</h4>
+            <p>#{m.description}</p>
+        </f:facet>
+        <f:facet name="thumbnail">
+            <p:graphicImage name="/images/#{m.cover}" style="display: block; width: 30%" />
+        </f:facet>
+    </p:galleria>
+		</div> -->
+    	
+    	
+    	<div class="product card">
+    	<h2 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Wszyscy aktorzy i reżyserzy</h2>
+    <h:form>
+        <p:dataScroller widgetVar="ds" value="#{personListBB.list}" var="p" chunkSize="5">
+            <f:facet name="loading">
+                <div class="person">
+                    <div class="person-list-item p-5">
+                        <p:skeleton height="100px" width="150px" style="margin-right:2rem"/>
+                        <div class="product-list-detail">
+                            <p:skeleton width="200px" height="34px" style="margin-bottom:14px"/>
+                            <p:skeleton width="130px" height="17.5px" style="margin-bottom:7px"/>
+                            <p:skeleton width="200px" height="14px"/>
+                        </div>
+                        <div class="product-list-action" style="width:120px">
+                            <p:skeleton width="80px" height="24px" style="margin-bottom:7px;align-self:flex-end;"/>
+                            <p:skeleton height="33px" style="margin-bottom:7px"/>
+                            <p:skeleton height="21px"/>
+                        </div>
+                    </div>
+                </div>
+            </f:facet>
+
+            <div class="product">
+                <div class="product-list-item p-5">
+                    <p:graphicImage name="/images/#{p.portrait}" />
+                    <div class="product-list-detail">
+                        <div class="product-name">#{p.name} #{p.surname}</div>
+               <!--     <div class="product-description">#{m.description}</div> -->
+                      <!--  <p:rating readonly="true" value="#{product.rating}"/>
+                        <i class="pi pi-tag product-category-icon"/><span
+                            class="product-category">#{product.category}</span> -->
+                    </div>
+                    <div class="product-list-action">
+           			<p:commandButton type="button" value="Szczegóły" icon="pi pi-arrow-right"/>
+                    </div>
+                </div>
+            </div>
+
+            <f:facet name="loader">
+                <div class="text-center">
+                    <p:commandButton type="button" value="Załaduj więcej" icon="pi pi-refresh"/>
+                </div>
+            </f:facet>
+        </p:dataScroller>
+    </h:form>
+</div>
 
 	</ui:define>
 
