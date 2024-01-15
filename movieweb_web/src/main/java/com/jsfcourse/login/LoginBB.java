@@ -18,7 +18,6 @@ import com.jsfcourse.entities.User;
 @RequestScoped
 public class LoginBB {
 	private static final String PAGE_MAIN = "/public/mainPage?faces-redirect=true";
-    //private static final String PAGE = "/pages/movie/movieList?faces-redirect=true";
 	private static final String PAGE_LOGIN = "/pages/login";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 

@@ -8,40 +8,40 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 
-import com.jsf.entities.Movie;
+import com.jsf.entities.Role;
 
 //DAO - Data Access Object for Person entity
 //Designed to serve as an interface between higher layers of application and data.
 //Implemented as stateless Enterprise Java bean - server side code that can be invoked even remotely.
 
 @Stateless
-public class MovieDAO {
+public class RoleDAO {
 	private final static String UNIT_NAME = "jsfcourse-simplePU";
 
 	// Dependency injection (no setter method is needed)
 	@PersistenceContext(unitName = UNIT_NAME)
 	protected EntityManager em;
 
-	public void create(Movie movie) {
-		em.persist(movie);
+	public void create(Role role) {
+		em.persist(role);
 	}
 
-	public Movie merge(Movie movie) {
-		return em.merge(movie);
+	public Role merge(Role role) {
+		return em.merge(role);
 	}
 
-	public void remove(Movie movie) {
-		em.remove(em.merge(movie));
+	public void remove(Role role) {
+		em.remove(em.merge(role));
 	}
 
-	public Movie find(Object id) {
-		return em.find(Movie.class, id);
+	public Role find(Object id) {
+		return em.find(Role.class, id);
 	}
 
-	public List<Movie> getFullList() {
-		List<Movie> list = null;
+	public List<Role> getFullList() {
+		List<Role> list = null;
 
-		Query query = em.createQuery("select m from Movie m");
+		Query query = em.createQuery("select r from Role r");
 
 		try {
 			list = query.getResultList();
@@ -51,25 +51,25 @@ public class MovieDAO {
 
 		return list;
 	}
-	
-	public List<Movie> getList(Map<String, Object> searchParams) {
-		List<Movie> list = null;
+
+	public List<Role> getList(Map<String, Object> searchParams) {
+		List<Role> list = null;
 
 		// 1. Build query string with parameters
-		String select = "select m ";
-		String from = "from Movie m ";
+		String select = "select r ";
+		String from = "from Role r ";
 		String where = "";
-		String orderby = "order by m.title";
+		String orderby = "order by r.id";
 
 		// search for surname
-		String title = (String) searchParams.get("title");
+		String title = (String) searchParams.get("isDirector");
 		if (title != null) {
 			if (where.isEmpty()) {
 				where = "where ";
 			} else {
 				where += "and ";
 			}
-			where += "m.title like :title ";
+			where += "r.isDirector like :isDirector ";
 		}
 		
 		// ... other parameters ... 
@@ -79,7 +79,7 @@ public class MovieDAO {
 
 		// 3. Set configured parameters
 		if (title != null) {
-			query.setParameter("title", title+"%");
+			query.setParameter("isDirector", title+"%");
 		}
 
 		// ... other parameters ... 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:metadata>
+    <f:viewAction action="#{roleEditBB.onLoad()}" />
+</f:metadata>
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>movieweb</title>
+</h:head>
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel toggleable="false">
+
+		<h:form rendered="#{roleEditBB.role != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+			
+				<h:outputLabel for="person" value="osoba" />
+				<p:inputText id="person" value="#{roleEditBB.role.id_person}"
+					required="true" requiredMessage="id osoby">
+			    </p:inputText>
+				<p:message for="person" display="icon"/> 
+
+				<h:outputLabel for="movie" value="film" />
+				<p:inputText id="movie" value="#{roleEditBB.role.id_movie}"
+					required="true" requiredMessage="id filmu">
+			    </p:inputText>
+				<p:message for="movie" display="icon"/> 
+				
+				<h:outputLabel for="role" value="rola" />
+				<p:inputText id="role" value="#{roleEditBB.role.isDirector}"
+					required="true" requiredMessage="aktor - 0, reżyser - 1">
+			    </p:inputText>
+				<p:message for="role" display="icon"/>
+
+			</h:panelGrid>
+
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{roleEditGETBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+		</h:form>
+
+	</p:panel>
+
+</h:body>
+</html>

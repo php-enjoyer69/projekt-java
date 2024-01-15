@@ -68,7 +68,7 @@ public class PersonEditBB implements Serializable {
 		}
 
 		try {
-			if (person.getId_person() == null) {
+			if (person.getIdperson() == null) {
 				// new record
 				personDAO.create(person);
 			} else {

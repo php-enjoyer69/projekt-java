@@ -2,7 +2,6 @@ package com.jsf.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,8 +12,6 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.persistence.OneToMany;
-import com.jsf.entities.Role;
 
 /**
  * The persistent class for the person database table.
@@ -29,7 +26,7 @@ public class Person implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
-	private Integer idperson;
+	private Integer id_person;
 
 	@Column(length = 4)
 	private Integer birthyear;
@@ -44,22 +41,18 @@ public class Person implements Serializable {
 	private String portrait;
 
 	public void log(String text) {
-		System.out.println(text + ": [" + idperson + "], " + name + ", " + surname + ", " + birthyear + ", " + portrait);
+		System.out.println(text + ": [" + id_person + "], " + name + ", " + surname + ", " + birthyear + ", " + portrait);
 	}
-	
-	//bi-directional many-to-one association to Role
-	@OneToMany(mappedBy="person")
-	private List<Role> roles;
 	
 	public Person() {
 	}
 
-	public Integer getIdperson() {
-		return this.idperson;
+	public Integer getId_person() {
+		return this.id_person;
 	}
 
-	public void setIdperson(Integer idperson) {
-		this.idperson = idperson;
+	public void setId_person(Integer id_person) {
+		this.id_person = id_person;
 	}
 
 	public Integer getBirthyear() {
@@ -94,26 +87,5 @@ public class Person implements Serializable {
 		this.portrait = portrait;
 	}
 
-	public List<Role> getRoles() {
-		return this.roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
-	public Role addRole(Role role) {
-		getRoles().add(role);
-		role.setPerson(this);
-
-		return role;
-	}
-
-	public Role removeRole(Role role) {
-		getRoles().remove(role);
-		role.setPerson(null);
-
-		return role;
-	}
 
 }

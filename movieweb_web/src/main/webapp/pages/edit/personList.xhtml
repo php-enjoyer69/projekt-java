@@ -31,13 +31,15 @@
 
 	<h:form id="form-table" style="margin-bottom:1em;">
 
-		<p:commandButton value="Dodaj nową osobę"
+		<p:commandButton value="+ nowa osoba"
 			action="#{personListBB.newPerson()}" style="margin-bottom:1em;" />
+		<p:commandButton value="+ nowa rola"
+			action="#{roleListBB.newRole()}" style="margin-bottom:1em;" />
 			
 			<p:button value="Edycja filmów" outcome="movieList" />
 			<p:button value="STRONA GŁÓWNA" outcome="/public/mainPage" />
 			
-		<p:dataTable value="#{personListBB.list}" var="p">
+		<p:dataTable value="#{personListBB.list}" var="p" paginator="true" rows="8">
 
 			<p:column priority="5">
 				<f:facet name="header">
@@ -58,7 +60,6 @@
 					<h:outputText value="data ur." />
 				</f:facet>
 				<h:outputText value="#{p.birthyear}">
-					<f:convertDateTime pattern="yyyy" />
 				</h:outputText>
 			</p:column>
 			
@@ -81,7 +82,7 @@
 					action="#{personListBB.deletePerson(p)}" update="@form" />
 
 				<p:button outcome="personEditGET" value="Edytuj (GET)">
-					<f:param name="p" value="#{p.id_person}" />
+					<f:param name="p" value="#{p.idperson}" />
 				</p:button>
 			</p:column>
 

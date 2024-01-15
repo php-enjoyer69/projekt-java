@@ -15,9 +15,10 @@
 		<ui:define name="content">
 		
 		    <h:form>
+		    <p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/>
 			<p:button value="Filmy" outcome="/public/moviePage.xhtml"/>
 			<p:button value="Aktorzy" outcome="/public/personPage.xhtml"/>
-			<p:commandButton value="Wyloguj" action="#{loginBB.doLogout()}" icon="pi pi-fw pi-power-off"/>
+			<p:commandButton value="Logowanie" action="#{loginBB.doLogout}" /> <!--icon="pi pi-fw pi-power-off"-->
 			</h:form>
 			
 			<p:panel header="Szukaj filmy" toggleable="true" collapsed="true"
@@ -31,7 +32,7 @@
 		</h:form>
 	</p:panel>
 		<h:form id="form-table" style="margin-bottom:2em;">
-			<h2>Popularne teraz: filmy</h2>
+			<h2 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Popularne teraz: filmy</h2>
 					<div class="card">
         <p:carousel value="#{movieListBB.list}" var="m" numVisible="3" numScroll="3" circular="true" autoplayInterval="5000">
             <div class="movie-view">
@@ -40,9 +41,10 @@
                 	<p:graphicImage name="/images/#{m.cover}" width="200" height="200"/>
                     </div>
                     <div>
-                        <h3 class="mb-3"><h:outputText value="#{m.title}"></h:outputText></h3>
+                       <h3 class="mb-3"><p:link outcome="movieDetails" value="#{m.title}">
+        				<f:param name="m" value="#{m.idmovie}"/></p:link></h3>
                         <h6 class="mt-0 mb-3">
-                        <h:outputText value="#{m.year}"><f:convertDateTime pattern="yyyy" /><!--<f:convertNumber maxFractionDigits = "4"></f:convertNumber>-->
+                        <h:outputText value="#{m.year}">
                         </h:outputText><br></br>
                         <h5 class="mt-0 mb-3"><h:outputText value="#{m.description}"></h:outputText></h5>
                         </h6>
@@ -55,18 +57,19 @@
 			</h:form>
 			
 			<h:form id="form-table1" style="margin-bottom:1em;">
-			<h2>Popularni teraz: aktorzy</h2>
+			<h2 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Popularni teraz: aktorzy</h2>
 					<div class="card">
         <p:carousel value="#{personListBB.list}" var="p" numVisible="2" numScroll="3" circular="true" autoplayInterval="8000">
             <div class="movie-view">
                 <div class="movie-view-content">
                     <div>
-                	<p:graphicImage name="/images/#{p.portrait}" width="300" height="350"/>
+                	<p:graphicImage name="/images/#{p.portrait}" width="300" height="420"/>
                     </div>
                     <div>
-                        <h3 class="mb-3"><h:outputText value="#{p.name} #{p.surname}"></h:outputText></h3>
+                        <h3 class="mb-3"><p:link outcome="personDetails" value="#{p.name} #{p.surname}">
+        				<f:param name="p" value="#{p.idperson}"/></p:link></h3>
                         <h6 class="mt-0 mb-3">
-                        <h:outputText value="#{p.birthyear}"><f:convertDateTime pattern="yyyy" /><!--<f:convertNumber maxFractionDigits = "4"></f:convertNumber>-->
+                        <h:outputText value="#{p.birthyear}">
                         </h:outputText><br></br>
                         </h6>
                     </div>

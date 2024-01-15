@@ -10,18 +10,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-
 
 /**
  * The persistent class for the role database table.
  * 
  */
 @Entity
+@Table(name="role")
 @NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -30,7 +30,17 @@ public class Role implements Serializable {
 	private RolePK id;
 
 	@Column(name="is_director")
-	private byte is_director;
+	private byte isDirector;
+
+	//bi-directional many-to-one association to Movie
+	@ManyToOne
+	@JoinColumn(name="idmovie", insertable=false, updatable=false)
+	private Movie movie;
+
+	//bi-directional many-to-one association to Person
+	@ManyToOne
+	@JoinColumn(name="idperson", insertable=false, updatable=false)
+	private Person person;
 
 	public Role() {
 	}
@@ -43,12 +53,28 @@ public class Role implements Serializable {
 		this.id = id;
 	}
 
-	public byte getIs_director() {
-		return this.is_director;
+	public byte getIsDirector() {
+		return this.isDirector;
 	}
 
-	public void setIs_director(byte is_director) {
-		this.is_director = is_director;
+	public void setIsDirector(byte isDirector) {
+		this.isDirector = isDirector;
+	}
+
+	public Movie getMovie() {
+		return this.movie;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
+
+	public Person getPerson() {
+		return this.person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 }

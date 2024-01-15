@@ -31,13 +31,15 @@
 
 	<h:form id="form-table" style="margin-bottom:1em;">
 
-		<p:commandButton value="Dodaj nowy film"
+		<p:commandButton value="+ nowy film"
 			action="#{movieListBB.newMovie()}" style="margin-bottom:1em;" />
+		<p:commandButton value="+ nowa rola"
+			action="#{roleListBB.newRole()}" style="margin-bottom:1em;" />
 			
 		<p:button value="Edycja osób" outcome="personList" />
 		<p:button value="STRONA GŁÓWNA" outcome="/public/mainPage" />
 
-		<p:dataTable value="#{movieListBB.list}" var="m">
+		<p:dataTable value="#{movieListBB.list}" var="m" paginator="true" rows="8">
 
 			<p:column priority="5">
 				<f:facet name="header">
@@ -58,7 +60,6 @@
 					<h:outputText value="rok premiery" />
 				</f:facet>
 				<h:outputText value="#{m.year}">
-					<f:convertDateTime pattern="yyyy" />
 				</h:outputText>
 			</p:column>
 			
@@ -81,7 +82,7 @@
 					action="#{movieListBB.deleteMovie(m)}" update="@form" />
 
 				<p:button outcome="movieEditGET" value="Edytuj (GET)">
-					<f:param name="m" value="#{m.id_movie}" />
+					<f:param name="m" value="#{m.idmovie}" />
 				</p:button>
 			</p:column>
 

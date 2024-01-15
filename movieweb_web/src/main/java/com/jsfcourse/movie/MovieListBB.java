@@ -1,5 +1,6 @@
 package com.jsfcourse.movie;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.ejb.EJB;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.Flash;
@@ -20,6 +22,7 @@ import com.jsf.entities.Movie;
 @RequestScoped
 public class MovieListBB {
 	private static final String PAGE_MOVIE_EDIT = "/pages/edit/movieEdit?faces-redirect=true";
+	private static final String PAGE_MOVIE_DETAILS = "/pages/edit/movieDetails?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String title;
@@ -32,6 +35,7 @@ public class MovieListBB {
 	
 	@EJB
 	MovieDAO movieDAO;
+	
 		
 	public String getTitle() {
 		return title;
@@ -84,9 +88,22 @@ public class MovieListBB {
 		
 		return PAGE_MOVIE_EDIT;
 	}
+	
+	public String showMovie(Movie movie){
+		//1. Pass object through session
+		//HttpSession session = (HttpSession) extcontext.getSession(true);
+		//session.setAttribute("person", person);
+		
+		//2. Pass object through flash 
+		flash.put("movie", movie);
+		
+		return PAGE_MOVIE_DETAILS;
+	}
 
 	public String deleteMovie(Movie movie){
 		movieDAO.remove(movie);
 		return PAGE_STAY_AT_THE_SAME;
 	}
+	
+	
 }

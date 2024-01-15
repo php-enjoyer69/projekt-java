@@ -14,22 +14,24 @@
 	<ui:define name="loginpage">
 
 		<h:form>
-			<h3 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff;margin-top:-3px">Logowanie</h3>
+			<h3 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Rejestracja</h3>
 			<h:panelGrid columns="2" cellpadding="5" styleClass="bottom-space">
 				<p:outputLabel for="login" value="login:" />
-				<p:inputText id="login" value="#{loginBB.login}"
+				<p:inputText id="login" value="#{LoginBB.login}"
 					required="true"	requiredMessage="podaj login"/>
 				<p:outputLabel for="password" value="hasło:" />
-				<p:password id="password" value="#{loginBB.pass}" toggleMask="true" redisplay="true" 
+				<p:password id="password" value="#{LoginBB.password}" toggleMask="true" redisplay="true" 
 				 	required="true"	requiredMessage="podaj hasło"/>
 			</h:panelGrid>
 		
 			<h:messages />
 		
-			<h:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="msg" />
-			<!--  p:commandButton value="Załóż konto"
-					action="#{RegisterBB.registerUser()}"/-->
-			<p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/>
+					<p:commandButton value="Zarejestruj"
+					action="#{userRegisterBB.saveData()}" style="margin-right: 1em;"
+					update="@form" />
+					<p:button value="Strona główna" outcome="/public/mainPage.xhtml" icon="pi pi-home"/>
+					
+			<!--h:commandButton styleClass="rounded-button ui-button-help" style="color: hotpink" value="Zarejestruj się"/-->
 
 		</h:form>
 

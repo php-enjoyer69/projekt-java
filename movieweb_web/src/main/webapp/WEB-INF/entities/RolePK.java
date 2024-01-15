@@ -11,11 +11,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+
 /**
  * The primary key class for the role database table.
  * 
@@ -25,25 +26,25 @@ public class RolePK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="idmovie", insertable=false, updatable=false)
-	private int idmovie;
+	@Column(name="id_movie", insertable=false, updatable=false)
+	private int id_movie;
 
-	@Column(name="idperson", insertable=false, updatable=false)
-	private int idperson;
+	@Column(name="id_person", insertable=false, updatable=false)
+	private int id_person;
 
 	public RolePK() {
 	}
-	public int getIdMovie() {
-		return this.idmovie;
+	public int getId_movie() {
+		return this.id_movie;
 	}
-	public void setIdMovie(int idmovie) {
-		this.idmovie = idmovie;
+	public void setId_movie(int id_movie) {
+		this.id_movie = id_movie;
 	}
-	public int getIdPerson() {
-		return this.idperson;
+	public int getId_person() {
+		return this.id_person;
 	}
-	public void setIdPerson(int idperson) {
-		this.idperson = idperson;
+	public void setId_person(int id_person) {
+		this.id_person = id_person;
 	}
 
 	public boolean equals(Object other) {
@@ -55,15 +56,15 @@ public class RolePK implements Serializable {
 		}
 		RolePK castOther = (RolePK)other;
 		return 
-			(this.idmovie == castOther.idmovie)
-			&& (this.idperson == castOther.idperson);
+			(this.id_movie == castOther.id_movie)
+			&& (this.id_person == castOther.id_person);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.idmovie;
-		hash = hash * prime + this.idperson;
+		hash = hash * prime + this.id_movie;
+		hash = hash * prime + this.id_person;
 		
 		return hash;
 	}

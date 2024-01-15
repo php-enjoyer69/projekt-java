@@ -7,7 +7,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <f:metadata>
-	<f:viewParam name="m" value="#{movieEditGETBB.movie.id_movie}"
+	<f:viewParam name="m" value="#{movieEditGETBB.movie.idmovie}"
 		converterMessage="Nieoczekiwany błąd"/>
 	<f:event type="preRenderView" listener="#{movieEditGETBB.onLoad()}" />
 </f:metadata>
@@ -20,7 +20,7 @@
 
 	<p:panel toggleable="true" header="Edycja rekordu">
 
-		<h:form rendered="#{movieEditBB.movie != null}">
+		<h:form rendered="#{movieEditGETBB.movie != null}">
 			<h:panelGrid columns="3" cellpadding="5">
 
 				<h:outputLabel for="m-title" value="tytuł:" />
@@ -43,7 +43,6 @@
 				<p:inputText id="m-year" value="#{movieEditGETBB.movie.year}"
 					required="true" requiredMessage="podaj rok premiery"
 					converterMessage="niepoprawny format daty (np. 2018)">
-					<f:convertDateTime pattern="yyyy"/>
 			    </p:inputText>
 				<p:message for="m-year" display="icon"/>
 				

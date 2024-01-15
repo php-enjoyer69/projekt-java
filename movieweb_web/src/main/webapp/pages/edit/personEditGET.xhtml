@@ -7,7 +7,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <f:metadata>
-	<f:viewParam name="p" value="#{personEditGETBB.person.id_person}"
+	<f:viewParam name="p" value="#{personEditGETBB.person.idperson}"
 		converterMessage="Nieoczekiwany błąd"/>
 	<f:event type="preRenderView" listener="#{personEditGETBB.onLoad()}" />
 </f:metadata>
@@ -43,12 +43,11 @@
 				<p:inputText id="p-date" value="#{personEditGETBB.person.birthyear}"
 					required="true" requiredMessage="podaj rok urodzenia"
 					converterMessage="niepoprawny format daty (np. 2018)">
-					<f:convertDateTime pattern="yyyy"/>
 			    </p:inputText>
 				<p:message for="p-date" display="icon"/>
 				
 				<h:outputLabel for="p-portrait" value="zdjęcie:" />
-				<p:inputText id="p-portrait" value="#{personEditBB.person.portrait}"
+				<p:inputText id="p-portrait" value="#{personEditGETBB.person.portrait}"
 					required="true" requiredMessage="podaj nazwę pliku z rozszerzeniem .jpg"
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />

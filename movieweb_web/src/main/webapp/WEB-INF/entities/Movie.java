@@ -2,7 +2,6 @@ package com.jsf.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,8 +12,6 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.persistence.OneToMany;
-import com.jsf.entities.Role;
 
 /**
  * The persistent class for the person database table.
@@ -29,7 +26,7 @@ public class Movie implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
-	private Integer idmovie;
+	private Integer id_movie;
 
 	@Column(length = 4)
 	private Integer year;
@@ -44,25 +41,21 @@ public class Movie implements Serializable {
 	private String cover;
 	
 	@Column(length = 45)
-	private String idrating;
+	private String id_rating;
 
 	public void log(String text) {
-		System.out.println(text + ": [" + idmovie + "], " + title + ", " + year + ", " + description + ", " + cover);
+		System.out.println(text + ": [" + id_movie + "], " + title + ", " + year + ", " + description + ", " + cover);
 	}
-	
-	//bi-directional many-to-one association to Role
-	@OneToMany(mappedBy="movie")
-	private List<Role> roles;
 	
 	public Movie() {
 	}
 
-	public Integer getIdmovie() {
-		return this.idmovie;
+	public Integer getId_movie() {
+		return this.id_movie;
 	}
 
-	public void setIdmovie(Integer idmovie) {
-		this.idmovie = idmovie;
+	public void setId_movie(Integer id_movie) {
+		this.id_movie = id_movie;
 	}
 
 	public Integer getYear() {
@@ -97,34 +90,12 @@ public class Movie implements Serializable {
 		this.cover = cover;	
 	}
 	
-	public String getIdrating() {
-		return this.idrating;
+	public String getId_rating() {
+		return this.id_rating;
 	}
 
-	public void setIdrating(String idrating) {
-		this.idrating = idrating;
-	}
-	
-	public List<Role> getRoles() {
-		return this.roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
-	public Role addRole(Role role) {
-		getRoles().add(role);
-		role.setMovie(this);
-
-		return role;
-	}
-
-	public Role removeRole(Role role) {
-		getRoles().remove(role);
-		role.setMovie(null);
-
-		return role;
+	public void setId_rating(String id_rating) {
+		this.id_rating = id_rating;
 	}
 	
 }

@@ -19,9 +19,10 @@
 	<ui:define name="content">
 	
 		    <h:form>
+		    <p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/>
 			<p:button value="Filmy" outcome="/public/moviePage.xhtml"/>
 			<p:button value="Aktorzy" outcome="/public/personPage.xhtml"/>
-			<p:commandButton value="Wyloguj" action="#{loginBB.doLogout()}" icon="pi pi-fw pi-power-off"/>
+			<p:commandButton value="Logowanie" action="#{loginBB.doLogout}" />
 			</h:form>
 			
 	<p:panel header="Szukaj osoby" toggleable="true" collapsed="true"
@@ -33,9 +34,10 @@
 				<p:commandButton value="Szukaj" update="form-table" />
 			</h:panelGrid>
 		</h:form>
-	</p:panel>
-		<h:form id="form-table" style="margin-bottom:2em;">
-			<h2 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Popularni teraz:</h2>
+	</p:panel>	
+				
+		<h:form id="form-table1" style="margin-bottom:2em;">
+			<h2 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Popularni teraz</h2>
 					<div class="card">
         <p:carousel value="#{personListBB.list}" var="p" numVisible="3" numScroll="3" circular="true" autoplayInterval="5000">
             <div class="movie-view">
@@ -44,9 +46,10 @@
                 	<p:graphicImage name="/images/#{p.portrait}" width="300" height="420"/>
                     </div>
                     <div>
-                        <h3 class="mb-3"><h:outputText value="#{p.name} #{p.surname}"></h:outputText></h3>
+                        <h3 class="mb-3"><p:link outcome="personDetails" value="#{p.name} #{p.surname}">
+        				<f:param name="p" value="#{p.idperson}"/></p:link></h3>
                         <h6 class="mt-0 mb-3">ur.
-                        <h:outputText value="#{p.birthyear}"><f:convertDateTime pattern="yyyy" /><!--<f:convertNumber maxFractionDigits = "4"></f:convertNumber>-->
+                        <h:outputText value="#{p.birthyear}">
                         </h:outputText><br></br>
                   <!--  <h5 class="mt-0 mb-3"><h:outputText value="#{m.description}"></h:outputText></h5> -->
                         </h6>
@@ -56,25 +59,10 @@
         </p:carousel>
     </div>
     	</h:form>
-    	
-    <!--  	<div class="card" style="margin-left: 430px">
-    <p:galleria value="#{movieListBB.list}" var="m" numVisible="5"
-                showCaption="true" style="max-width: 640px; height: 100%;" >
-        <p:graphicImage name="/images/#{m.cover}" style="width: 100%; display: block;" />
-        <f:facet name="caption">
-            <h4 class="mb-2">#{m.title}</h4>
-            <p>#{m.description}</p>
-        </f:facet>
-        <f:facet name="thumbnail">
-            <p:graphicImage name="/images/#{m.cover}" style="display: block; width: 30%" />
-        </f:facet>
-    </p:galleria>
-		</div> -->
-    	
-    	
+	
     	<div class="product card">
     	<h2 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Wszyscy aktorzy i reżyserzy</h2>
-    <h:form>
+    <h:form id="form-table" style="display: flex; justify-content: center; gap: 20px;">
         <p:dataScroller widgetVar="ds" value="#{personListBB.list}" var="p" chunkSize="5">
             <f:facet name="loading">
                 <div class="person">
@@ -104,8 +92,12 @@
                         <i class="pi pi-tag product-category-icon"/><span
                             class="product-category">#{product.category}</span> -->
                     </div>
-                    <div class="product-list-action">
-           			<p:commandButton type="button" value="Szczegóły" icon="pi pi-arrow-right"/>
+                    <div class="product-list-action" style="margin-left: 20rem">
+                    
+           			<p:button outcome="personDetails" type="button" value="Szczegóły" icon="pi pi-arrow-right">
+           			<f:param name="p" value="#{p.idperson}" />
+           			</p:button>
+           			
                     </div>
                 </div>
             </div>

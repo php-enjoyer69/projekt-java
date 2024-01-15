@@ -42,7 +42,6 @@
 				<p:inputText id="p-birthyear" value="#{personEditBB.person.birthyear}"
 					required="true" requiredMessage="podaj rok urodzenia"
 					converterMessage="niepoprawny format daty (np. 2018)">
-					<f:convertDateTime pattern="yyyy"/>
 			    </p:inputText>
 				<p:message for="p-birthyear" display="icon"/>
 				
@@ -53,7 +52,6 @@
 					<f:validateLength maximum="40" />
 				</p:inputText>
 				<p:message for="p-portrait" display="icon"/>
-				
 			</h:panelGrid>
 
 			<p:messages id="msgs" />

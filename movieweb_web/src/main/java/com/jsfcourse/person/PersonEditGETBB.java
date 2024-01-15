@@ -36,8 +36,8 @@ public class PersonEditGETBB implements Serializable {
 
 	public void onLoad() throws IOException {
 		if (!context.isPostback()) {
-			if (!context.isValidationFailed() && person.getId_person() != null) {
-				loaded = personDAO.find(person.getId_person());
+			if (!context.isValidationFailed() && person.getIdperson() != null) {
+				loaded = personDAO.find(person.getIdperson());
 			}
 			if (loaded != null) {
 				person = loaded;
@@ -59,7 +59,7 @@ public class PersonEditGETBB implements Serializable {
 		}
 
 		try {
-			if (person.getId_person() == null) {
+			if (person.getIdperson() == null) {
 				// new record
 				personDAO.create(person);
 			} else {

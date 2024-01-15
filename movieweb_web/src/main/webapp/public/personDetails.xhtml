@@ -5,18 +5,78 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-<ui:composition template="/templates/login-template.xhtml">
-
-	<ui:define name="content">
-
-	<h1>FilmOwO - baza filmów i aktorów online</h1>
-	<p>Najlepsza baza z filmami jaką znajdziesz ♥</p>
 	
-	<p:button value="+ nowy aktor" outcome="/pages/edit/personList" />
-	<p:button value="+ nowy film" outcome="/pages/edit/movieList" />
+	<f:metadata>
+	<f:viewParam name="p" value="#{personEditGETBB.person.idperson}"
+		converterMessage="Nieoczekiwany błąd"/>
+	<f:event type="preRenderView" listener="#{personEditGETBB.onLoad()}" />
+</f:metadata>
+
+		<style>
+			img {
+    		object-fit: cover;
+		}</style>
+		
+<ui:composition template="/templates/view-template.xhtml">
+
+	<ui:define name="title">
+	</ui:define>
+	
+	<ui:define name="content">
+	
+		    <h:form>
+		    <p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/>
+			<p:button value="Filmy" outcome="/public/moviePage.xhtml"/>
+			<p:button value="Aktorzy" outcome="/public/personPage.xhtml"/>
+			<p:commandButton value="Logowanie" action="#{loginBB.doLogout}" />
+			</h:form>
+			
+			<h2 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff">Szczegóły osoby</h2>
+					
+	<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel toggleable="false">
+
+		<h:form value="#{personEditGETBB.person.idperson}" var="p" style="display: flex; justify-content: center; gap: 20px; min-height: 40vh;">
+			<p:graphicImage name="/images/#{personEditGETBB.person.portrait}" width="200" height="320" style="margin-top: auto;margin-bottom: auto;"/>	
+			<h:panelGrid columns="2" cellpadding="8">
+
+				<h:outputLabel value="imię i nazwisko" style="color:hotpink;float:right;"/>
+				<p:outputPanel>#{personEditGETBB.person.name} #{personEditGETBB.person.surname}
+				</p:outputPanel>
+				
+				<h:outputLabel for="s-avg_rating" value="ocena użytkowników" style="color:hotpink;float:right"/>
+				<p:outputPanel> /5✰
+				</p:outputPanel>
+
+				<h:outputLabel for="m-year" value="rok urodzenia" style="color:hotpink;float:right"/>
+				<p:outputPanel id="m-year">#{personEditGETBB.person.birthyear}
+				</p:outputPanel> 
+				
+				<h:outputLabel for="r-role" value="główne role" style="color:hotpink;float:right"/>
+				<p:outputPanel id="r-role">tegojeszczeniemamzrobionego
+				</p:outputPanel> 
+
+			</h:panelGrid>
+
+		</h:form>
+			<p:panel header="✰ Oceń tą osobę" toggleable="true" collapsed="true"
+		style="margin-bottom: 4em; width: 400px; margin-left: auto; margin-right: auto; margin-top: 40px;">
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel value="wpisz liczbę gwiazdek 1-5" />
+				<p:inputText value="#{movieListBB.title}"/>
+				<p:commandButton value="Dodaj ocenę"  />
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+					<p:button value="Powrót do aktorów" outcome="personPage" style="display: flex; margin-left: auto; margin-right: auto; margin-top: 5px;"/>
+					
+		</p:panel>
+		</h:body>
 
 	</ui:define>
 
 </ui:composition>
 </html>
+  

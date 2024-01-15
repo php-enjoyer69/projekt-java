@@ -23,13 +23,13 @@ public class UserDAO {
 			u.setPassword(pass);
 		}
 
-		if (login.equals("manager") && pass.equals("manager")) {
+		if (login.equals("admin") && pass.equals("admin")) {
 			u = new User();
 			u.setLogin(login);
 			u.setPassword(pass);
 		}
 
-		if (login.equals("admin") && pass.equals("admin")) {
+		if (login.equals("user3") && pass.equals("password")) {
 			u = new User();
 			u.setLogin(login);
 			u.setPassword(pass);
@@ -46,11 +46,11 @@ public class UserDAO {
 		if (user.getLogin().equals("user")) {
 			roles.add("user");
 		}
-		if (user.getLogin().equals("manager")) {
-			roles.add("manager");
-		}
 		if (user.getLogin().equals("admin")) {
 			roles.add("admin");
+		}
+		if (user.getLogin().equals("user3")) {
+			roles.add("manager");
 		}
 		
 		return roles;
