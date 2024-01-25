@@ -37,42 +37,37 @@
 
 	<p:panel toggleable="false">
 
-		<h:form value="#{personEditGETBB.person.idperson}" var="p" style="display: flex; justify-content: center; gap: 20px; min-height: 40vh;">
+		<div value="#{personEditGETBB.person.idperson}" var="p" style="display: flex; justify-content: center; gap: 20px; min-height: 40vh;">
 			<p:graphicImage name="/images/#{personEditGETBB.person.portrait}" width="200" height="320" style="margin-top: auto;margin-bottom: auto;"/>	
 			<h:panelGrid columns="2" cellpadding="8">
 
-				<h:outputLabel value="imię i nazwisko" style="color:hotpink;float:right;"/>
-				<p:outputPanel>#{personEditGETBB.person.name} #{personEditGETBB.person.surname}
+				<h:outputLabel value="imię" style="color:hotpink;float:right;"/>
+				<p:outputPanel>#{personEditGETBB.person.name}
 				</p:outputPanel>
 				
-				<h:outputLabel for="s-avg_rating" value="ocena użytkowników" style="color:hotpink;float:right"/>
-				<p:outputPanel> /5✰
+				<h:outputLabel value="nazwisko" style="color:hotpink;float:right;"/>
+				<p:outputPanel>#{personEditGETBB.person.surname}
 				</p:outputPanel>
 
 				<h:outputLabel for="m-year" value="rok urodzenia" style="color:hotpink;float:right"/>
 				<p:outputPanel id="m-year">#{personEditGETBB.person.birthyear}
 				</p:outputPanel> 
 				
-				<h:outputLabel for="r-role" value="główne role" style="color:hotpink;float:right"/>
-				<p:outputPanel id="r-role">tegojeszczeniemamzrobionego
+				<h:outputLabel for="m-year" value="role tej osoby" style="color:hotpink;float:right"/>
+						<ui:repeat value="#{personEditGETBB.roleList}" var="role">
+				<p:outputPanel>w filmie <p:link outcome="movieDetails" value="#{role.movie.title}">
+				<f:param name="m" value="#{role.movie.idmovie}" /></p:link>
+				<h:outputFormat rendered="#{role.isDirector == 0}" value=" jako aktor"/>
+				<h:outputFormat rendered="#{role.isDirector == 1}" value=" jako reżyser"/>
 				</p:outputPanel> 
+						</ui:repeat>
 
 			</h:panelGrid>
+			</div>
 
-		</h:form>
-			<p:panel header="✰ Oceń tą osobę" toggleable="true" collapsed="true"
-		style="margin-bottom: 4em; width: 400px; margin-left: auto; margin-right: auto; margin-top: 40px;">
-		<h:form>
-			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel value="wpisz liczbę gwiazdek 1-5" />
-				<p:inputText value="#{movieListBB.title}"/>
-				<p:commandButton value="Dodaj ocenę"  />
-			</h:panelGrid>
-		</h:form>
 	</p:panel>
 					<p:button value="Powrót do aktorów" outcome="personPage" style="display: flex; margin-left: auto; margin-right: auto; margin-top: 5px;"/>
 					
-		</p:panel>
 		</h:body>
 
 	</ui:define>

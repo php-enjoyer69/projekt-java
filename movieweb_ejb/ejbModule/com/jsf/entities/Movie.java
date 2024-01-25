@@ -43,8 +43,8 @@ public class Movie implements Serializable {
 	@Column(length = 45)
 	private String cover;
 	
-	@Column(length = 45)
-	private String idrating;
+	@Column
+	private double rating;
 
 	public void log(String text) {
 		System.out.println(text + ": [" + idmovie + "], " + title + ", " + year + ", " + description + ", " + cover);
@@ -97,12 +97,12 @@ public class Movie implements Serializable {
 		this.cover = cover;	
 	}
 	
-	public String getIdrating() {
-		return this.idrating;
+	public double getRating() {
+		return this.rating;
 	}
 
-	public void setIdrating(String idrating) {
-		this.idrating = idrating;
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 	
 	public List<Role> getRoles() {

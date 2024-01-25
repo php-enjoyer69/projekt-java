@@ -94,6 +94,19 @@ public class MovieDAO {
 		return list;
 	}
 	
-	
+	public Movie countRating(Movie updatedMovie) {
+        // Pobierz poprzedni rekord z bazy danych
+        Movie movie = em.find(Movie.class, updatedMovie.getIdmovie());
 
+        // Oblicz nową średnią
+        double newRating = (movie.getRating() + updatedMovie.getRating()) / 2;
+
+        // Ustaw nową wartość ratingu
+        movie.setRating(newRating);
+
+        // Zapisz zmiany w bazie danych
+        em.merge(movie);
+
+        return movie;
+    }
 }

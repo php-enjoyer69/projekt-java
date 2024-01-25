@@ -33,8 +33,6 @@
 
 		<p:commandButton value="+ nowy film"
 			action="#{movieListBB.newMovie()}" style="margin-bottom:1em;" />
-		<p:commandButton value="+ nowa rola"
-			action="#{roleListBB.newRole()}" style="margin-bottom:1em;" />
 			
 		<p:button value="Edycja osób" outcome="personList" />
 		<p:button value="STRONA GŁÓWNA" outcome="/public/mainPage" />
@@ -74,9 +72,6 @@
 				<f:facet name="header">
 					<h:outputText value="opcje" />
 				</f:facet>
-
-				<p:commandButton value="Edytuj"
-					action="#{movieListBB.editMovie(m)}" />
 
 				<p:commandButton value="Usuń"
 					action="#{movieListBB.deleteMovie(m)}" update="@form" />

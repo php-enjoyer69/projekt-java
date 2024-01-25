@@ -2,8 +2,11 @@ package com.jsfcourse.movie;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
+import jakarta.annotation.ManagedBean;
 import jakarta.ejb.EJB;
+import jakarta.faces.annotation.ManagedProperty;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -11,7 +14,11 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import com.jsf.dao.MovieDAO;
+import com.jsf.dao.RoleDAO;
+import com.jsf.dao.PersonDAO;
 import com.jsf.entities.Movie;
+import com.jsf.entities.Role;
+import com.jsf.entities.Person;
 
 @Named
 @ViewScoped
@@ -23,17 +30,33 @@ public class MovieEditGETBB implements Serializable {
 
 	private Movie movie = new Movie();
 	private Movie loaded = null;
+	private List<Role> roles = null;
 
 	@Inject
 	FacesContext context;
 
 	@EJB
 	MovieDAO movieDAO;
+	
+	@EJB
+	RoleDAO roleDAO;
+	
+	@EJB
+	PersonDAO personDAO;
 
 	public Movie getMovie() {
 		return movie;
 	}
-
+	
+	public List<Role> getRoles() {
+		roles = roleDAO.getListForMovie(movie.getIdmovie());
+		return roles;
+	}
+	
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
 	public void onLoad() throws IOException {
 		if (!context.isPostback()) {
 			if (!context.isValidationFailed() && movie.getIdmovie() != null) {
@@ -51,6 +74,11 @@ public class MovieEditGETBB implements Serializable {
 		}
 
 	}
+	
+	public List<Role> getRoleList() {
+		roles = roleDAO.getListForMovie(movie.getIdmovie());
+		return roles;
+	}
 
 	public String saveData() {
 		// no Person object passed
@@ -64,6 +92,9 @@ public class MovieEditGETBB implements Serializable {
 				movieDAO.create(movie);
 			} else {
 				// existing record
+				for (Role role : roles ) {
+				roleDAO.merge(role);
+				}
 				movieDAO.merge(movie);
 			}
 		} catch (Exception e) {
@@ -73,6 +104,22 @@ public class MovieEditGETBB implements Serializable {
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
-		return PAGE_MOVIE_LIST;
+		return PAGE_STAY_AT_THE_SAME;
 	}
+	
+	@Named
+	@ViewScoped
+	public class MovieManagedBean {
+
+	    @ManagedProperty("#{movieDAO}")
+	    private MovieDAO movieDAO;
+
+	    private Movie updatedMovie = new Movie();
+
+	    public void countRating() {
+	        Movie resultMovie = movieDAO.countRating(updatedMovie);
+	        // Dodaj logikę obsługi rezultatu, np. wyświetl komunikat o sukcesie
+	    }
+
+}
 }

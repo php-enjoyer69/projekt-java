@@ -38,12 +38,12 @@ public class RoleListBB {
 	RoleDAO roleDAO;
 	
 	@ManyToOne
-	@JoinColumn(name="id_movie")
+	@JoinColumn(name="idmovie")
 	private Movie movie;
 
 	//bi-directional many-to-one association to Person
 	@ManyToOne
-	@JoinColumn(name="id_person")
+	@JoinColumn(name="idperson")
 	private Person person;
 
 		
@@ -66,7 +66,7 @@ public class RoleListBB {
 		//1. Prepare search params
 		Map<String,Object> searchParams = new HashMap<String, Object>();
 		
-		if (isDirector != null && isDirector > 0){
+		if (isDirector != null){
 			searchParams.put("isDirector", isDirector);
 		}
 		

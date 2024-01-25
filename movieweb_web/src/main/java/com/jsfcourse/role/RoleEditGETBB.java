@@ -35,12 +35,12 @@ public class RoleEditGETBB implements Serializable {
 	RoleDAO roleDAO;
 	
 	@ManyToOne
-	@JoinColumn(name="id_movie")
+	@JoinColumn(name="idmovie")
 	private Movie movie = new Movie();
 
 	//bi-directional many-to-one association to Person
 	@ManyToOne
-	@JoinColumn(name="id_person")
+	@JoinColumn(name="idperson")
 	private Person person = new Person();
 
 	public Role getRole() {

@@ -9,6 +9,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 
 import com.jsf.entities.Role;
+import com.jsf.entities.Movie;
 
 //DAO - Data Access Object for Person entity
 //Designed to serve as an interface between higher layers of application and data.
@@ -51,6 +52,38 @@ public class RoleDAO {
 
 		return list;
 	}
+	
+	public List<Role> getListForMovie(int idMovie) {
+		List<Role> list = null;
+
+		Query query = em.createQuery("select r from Role r where r.id.idmovie = " + idMovie);
+
+		try {
+			list = query.getResultList();
+		} catch (Exception e) {
+			System.out.println(list);
+			e.printStackTrace();
+			
+		}
+
+		return list;
+	}
+	
+	public List<Role> getListForPerson(int idPerson) {
+		List<Role> list = null;
+
+		Query query = em.createQuery("select r from Role r where r.id.idperson = " + idPerson);
+
+		try {
+			list = query.getResultList();
+		} catch (Exception e) {
+			System.out.println(list);
+			e.printStackTrace();
+			
+		}
+
+		return list;
+	}
 
 	public List<Role> getList(Map<String, Object> searchParams) {
 		List<Role> list = null;
@@ -59,7 +92,7 @@ public class RoleDAO {
 		String select = "select r ";
 		String from = "from Role r ";
 		String where = "";
-		String orderby = "order by r.id";
+		String orderby = "order by r.person.surname";
 
 		// search for surname
 		String title = (String) searchParams.get("isDirector");

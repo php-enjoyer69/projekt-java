@@ -42,12 +42,12 @@ public class RoleEditBB implements Serializable {
 	Flash flash;
 	
 	@ManyToOne
-	@JoinColumn(name="id_movie")
+	@JoinColumn(name="idmovie")
 	private Movie movie = new Movie();
 
 	//bi-directional many-to-one association to Person
 	@ManyToOne
-	@JoinColumn(name="id_person")
+	@JoinColumn(name="idperson")
 	private Person person = new Person();
 
 	public Role getRole() {
@@ -81,7 +81,6 @@ public class RoleEditBB implements Serializable {
 			// context.responseComplete();
 			// }
 		}
-		
 
 	}
 

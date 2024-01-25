@@ -2,6 +2,7 @@ package com.jsfcourse.person;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.ejb.EJB;
 import jakarta.faces.application.FacesMessage;
@@ -11,7 +12,9 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import com.jsf.dao.PersonDAO;
+import com.jsf.dao.RoleDAO;
 import com.jsf.entities.Person;
+import com.jsf.entities.Role;
 
 @Named
 @ViewScoped
@@ -23,16 +26,30 @@ public class PersonEditGETBB implements Serializable {
 
 	private Person person = new Person();
 	private Person loaded = null;
+	private List<Role> roles = null;
 
 	@Inject
 	FacesContext context;
 
 	@EJB
 	PersonDAO personDAO;
+	
+	@EJB
+	RoleDAO roleDAO;
 
 	public Person getPerson() {
 		return person;
 	}
+	
+	public List<Role> getRoles() {
+		roles = roleDAO.getListForPerson(person.getIdperson());
+		return roles;
+	}
+	
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
 
 	public void onLoad() throws IOException {
 		if (!context.isPostback()) {
@@ -51,6 +68,12 @@ public class PersonEditGETBB implements Serializable {
 		}
 
 	}
+	
+	public List<Role> getRoleList() {
+		roles = roleDAO.getListForPerson(person.getIdperson());
+		return roles;
+	}
+	
 
 	public String saveData() {
 		// no Person object passed
@@ -64,6 +87,9 @@ public class PersonEditGETBB implements Serializable {
 				personDAO.create(person);
 			} else {
 				// existing record
+				for (Role role : roles ) {
+				roleDAO.merge(role);
+				}
 				personDAO.merge(person);
 			}
 		} catch (Exception e) {

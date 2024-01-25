@@ -53,6 +53,17 @@
 					<f:validateLength maximum="40" />
 				</p:inputText>
 				<p:message for="p-portrait" display="icon"/>
+				
+				             <!--   <h:outputLabel value="Edycja roli postaci" /> -->  
+                 <ui:repeat value="#{personEditGETBB.roles}" var="role"> 
+                 #{role.movie.title}:  
+                        <p:selectOneMenu id="labeled" value="#{role.isDirector}" alwaysDisplayLabel="true" >
+      
+                   			 <f:selectItem itemLabel="aktor" itemValue="0"/>
+                   			 <f:selectItem itemLabel="reżyser" itemValue="1"/>
+                
+                		</p:selectOneMenu> 
+				 </ui:repeat> 
 
 			</h:panelGrid>
 
