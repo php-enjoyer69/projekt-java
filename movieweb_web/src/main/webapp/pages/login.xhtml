@@ -8,28 +8,27 @@
 
 <ui:composition template="/templates/logo-template.xhtml">
 
-	<ui:define name="title">   
-	</ui:define>
-	
 	<ui:define name="loginpage">
 
 		<h:form>
 			<h3 style="text-align: center;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff;margin-top:-3px">Logowanie</h3>
 			<h:panelGrid columns="2" cellpadding="5" styleClass="bottom-space">
+			
 				<p:outputLabel for="login" value="login:" />
-				<p:inputText id="login" value="#{loginBB.login}"
+				<p:inputText id="login" value="#{userSenderBB.login}"
 					required="true"	requiredMessage="podaj login"/>
+					
 				<p:outputLabel for="password" value="hasło:" />
-				<p:password id="password" value="#{loginBB.pass}" toggleMask="true" redisplay="true" 
+				<p:password id="password" value="#{userSenderBB.password}" toggleMask="true" redisplay="true" 
 				 	required="true"	requiredMessage="podaj hasło"/>
+				 	
 			</h:panelGrid>
 		
-			<h:messages />
-		
-			<h:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="msg" />
-			<!--  p:commandButton value="Załóż konto"
-					action="#{RegisterBB.registerUser()}"/-->
+			<p:commandButton value="Zaloguj" action="#{userSenderBB.sendThroughSession()}"/>
+			
 			<p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/>
+			
+			<p:button value="Załóż konto" outcome="/public/register.xhtml"/>
 
 		</h:form>
 

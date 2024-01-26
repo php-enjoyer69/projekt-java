@@ -7,9 +7,6 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/templates/view-template.xhtml">
-
-	<ui:define name="title">
-	</ui:define>
 	
 	
 		<ui:define name="content">
@@ -18,7 +15,11 @@
 		    <p:button outcome="/public/mainPage.xhtml" icon="pi pi-home"/>
 			<p:button value="Filmy" outcome="/public/moviePage.xhtml"/>
 			<p:button value="Aktorzy" outcome="/public/personPage.xhtml"/>
-			<p:commandButton value="Logowanie" action="#{loginBB.doLogout}" /> <!--icon="pi pi-fw pi-power-off"-->
+			<p:commandButton value="Ekran logowania" action="#{userSenderBB.logout()}" /> <!--icon="pi pi-fw pi-power-off"-->
+			</h:form>
+			<h:form rendered="#{userSenderBB.loggedUser != null}">
+			<h:outputText style="float:right;margin-top:-35px;font-family:Comic Sans MS;text-shadow:3px 1px #ffffff" 
+			value="zalogowany użytkownik: #{userSenderBB.loggedUser}"  />
 			</h:form>
 			
 			<p:panel header="" toggleable="false" collapsed="true"

@@ -5,14 +5,16 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 	<h1>
-		<ui:insert name="title">...</ui:insert>
+		<ui:insert name="title"></ui:insert>
 	</h1>
 
-	<h:outputText
-		value="Zalogowany: #{remoteClient.roles}" />
+
+	<h:outputText style="font-family:Comic Sans MS;text-shadow:3px 1px #ffffff" 
+	value="zalogowany użytkownik: #{userSenderBB.loggedUser}"  />
 	<h:form>
 	<br></br>
-		<p:commandButton value="Wyloguj" action="#{loginBB.doLogout()}"/>
+	<p:commandButton value="Ekran logowania" action="#{userSenderBB.logout()}" /> <!--icon="pi pi-fw pi-power-off"-->
+
 	</h:form>
 
 
