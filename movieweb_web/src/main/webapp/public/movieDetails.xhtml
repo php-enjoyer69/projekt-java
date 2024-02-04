@@ -67,12 +67,18 @@
 				<h:outputFormat rendered="#{role.isDirector == 1}" value="  jako reżyser"/>
 				</p:outputPanel> 
 						</ui:repeat>
+					<h:form rendered="#{userSenderBB.loggedUser != null}">
+					<p:button outcome="/pages/edit/personSelect" style="margin-top: 5px;" 
+					value="Dodaj nową rolę" icon="pi pi-arrow-right">
+					<f:param name="m" value="#{movieEditGETBB.movie.idmovie}" />
+					</p:button>
+					</h:form>
 				</p:outputPanel> 
 
 			</h:panelGrid>
 
 		</div>
-		
+
 			<p:panel header="★ Oceń ten film" toggleable="true" collapsed="true"
 		style="margin-bottom: 4em; width: 400px; margin-left: auto; margin-right: auto; margin-top: 40px;">
 		<h:form>

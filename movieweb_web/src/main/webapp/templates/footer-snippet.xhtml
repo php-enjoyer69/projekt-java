@@ -3,7 +3,9 @@
 	xmlns:h="jakarta.faces.html"
 	xmlns:f="jakarta.faces.core">
 	
-	<h:form>
+	
+	©2024 FilmOwO
+	<h:form rendered="#{userSenderBB.loggedUser != null}">
 		<h:commandLink action="/pages/admin/page?faces-redirect=true" value="zarządzaj stroną" /> 
 	</h:form>
 
