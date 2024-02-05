@@ -34,10 +34,13 @@
 	</p:panel>
 
 	<p:messages />
-	<h:form rendered="#{userSenderBB.userPermission=admin}">
 	<p:button value="Powrót do szczegółów filmu" outcome="/public/movieDetails.xhtml">
 	<f:param name="m" value="#{roleEditGETBB.m}" />
 	</p:button>
+	<p:button outcome="movieEditGET" value="Edytuj ten film">
+	<f:param name="m" value="#{roleEditGETBB.m}" />
+	</p:button>
+	
 	
 	<h:form id="form-table" style="margin-bottom:1em;">
 			

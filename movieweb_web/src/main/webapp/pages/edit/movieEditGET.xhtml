@@ -72,7 +72,11 @@
 			<p:commandButton value="Zapisz" action="#{movieEditGETBB.saveData()}"
 				style="margin-right: 1em;" update="@form" />
 
-			<p:button value="Anuluj" outcome="movieList" />
+			<p:button value="Anuluj" outcome="movieList" style="margin-right: 1em;" >
+			</p:button>
+			<p:button value="poprzednia strona" outcome="personSelect" >
+			<f:param name="m" value="#{movieEditGETBB.movie.idmovie}" />
+			</p:button>
 		</h:form>
 
 	</p:panel>
